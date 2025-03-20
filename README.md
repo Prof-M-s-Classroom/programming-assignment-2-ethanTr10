@@ -59,7 +59,7 @@ Example:
 Example:
 > Initially, my program was crashing when trying to access an uninitialized node. I realized it was because I was not properly checking for `nullptr` before accessing child nodes, so I added a check to prevent accessing uninitialized memory.
 
----
+---When I was trying to extract the information from the text file, I kept on encountering an "exit code error 134 (interrupted by signal 6:SIGABRT).
 
 ## **7. Sample Output & Walkthrough**
 (Provide an example of how the game runs, including player input.)
