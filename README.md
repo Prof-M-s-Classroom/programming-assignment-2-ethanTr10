@@ -10,7 +10,9 @@
 ## **1. Project Overview**
 (Provide a brief summary of your RPG game. Describe how it uses a decision tree and how the player interacts with it.)
 
-Example:
+- In this project, all information is taken in from the story.txt file. Within each file line is an event number, description, left node event number, and a right node event number. All this information gets represented as a node where each node has a story and a pointer to the left and right nodes. When there is no additional node to the left or right (event numbers being -1), that means the current node is a leaf node. The construction of all the nodes means the game forms a binary decision tree. When the user plays the game, the root node’s description is broadcasted in the console and they are given the option to progress to the left node by typing 1 or the right node by typing 2. The user gets to traverse the entire decision tree of events until a leaf node is reached where a message will appear “You have reached the end of the path.”
+
+- Example:
 > This project implements a text-based RPG using a **binary decision tree**. Each game event is represented as a node, and the player progresses by choosing between two paths at each stage. The storyline is loaded from an external text file (`story.txt`), which is parsed to construct the decision tree. The game ends when a leaf node (with `-1` as left and right children) is reached.
 
 ---
@@ -56,10 +58,12 @@ Example:
 ## **6. Debugging Process (Errors & Fixes)**
 (Describe one or more debugging challenges you faced and how you fixed them.)
 
+- When I was trying to extract the information from the text file, I kept on encountering an "exit code error 134 (interrupted by signal 6:SIGABRT)." To solve this, I made an if statement to account for when tempCharFromFile was the delimiter or when a new line is encountered so that it does not add that char to the end of my temp string, textReadFromFileSoFar. The exclusion of delimiter and new line meant that I was able correctly convert the string into the ints for event, left, and right numbers.
+
 Example:
 > Initially, my program was crashing when trying to access an uninitialized node. I realized it was because I was not properly checking for `nullptr` before accessing child nodes, so I added a check to prevent accessing uninitialized memory.
 
----When I was trying to extract the information from the text file, I kept on encountering an "exit code error 134 (interrupted by signal 6:SIGABRT).
+---
 
 ## **7. Sample Output & Walkthrough**
 (Provide an example of how the game runs, including player input.)
@@ -69,9 +73,9 @@ Example:
 ## **8. Big-O Analysis of Core Methods**
 (Analyze the complexity of key methods.)
 
-- **Loading the tree from the file** → `O(?)`  
-- **Searching for an event in the tree** → `O(?)`  
-- **Game traversal efficiency** → `O(?)`  
+- **Loading the tree from the file** → `O(n) assuming that n is the number of char in the text file`  
+- **Searching for an event in the tree** → `O(n) since it is unsorted`  
+- **Game traversal efficiency** → `O(logn) because the game traverses going left or right per maneuver`  
 
 ---
 

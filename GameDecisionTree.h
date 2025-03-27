@@ -7,72 +7,129 @@
 #include <iostream>
 #include "Node.h"
 #include "Story.h"
-
-template <typename T>
+#include <vector>//added this so make sure to describe how you added this because it is a lot more efficient than having to count how many lines there are in the text file and then havin to create an array based on that size and the n trying to persue again to re add it all
+template<typename T>
 class GameDecisionTree {
 private:
-    Node<T>* root;
+    Node<T> *root;
 
 public:
     // TODO: Constructor
-    GameDecisionTree() : root(nullptr) {}
+    GameDecisionTree() : root(nullptr) {
+    }
 
     // TODO: Function to load story data from a text file and build the binary tree
-    void loadStoryFromFile(const std::string& filename, char delimiter) {
-        string lineFromFile;
+    void loadStoryFromFile(const std::string &filename, char delimiter) {
+        char tempCharFromFile;
+        string textReadFromFileSoFar;
         string tempDescription;
-        int ctr=0;
+        int delimiterCtr = 0;
         int tempEventNumber;
         int tempLeftEventNumber;
         int tempRightEventNumber;
-        //Story tempStory;
+        vector<Node<T> *> binaryTree;
         int tempIndex;
-        ifstream readingFile;
+        int nodeCtr = 0;
+        fstream readingFile;
 
         readingFile.open(filename);
-        if (readingFile) {//used to check if there is an actual file there to begin with
-            while (getline(readingFile, lineFromFile, delimiter)) { //while (getline(readingFile, lineFromFile, delimiter))
+        if (readingFile) {
+            //used to check if there is an actual file there to begin with
+            while (readingFile >> noskipws >> tempCharFromFile) {
+                //This reads every character within the text file
+                //count delimiters, check where end line is, its basically checking each character, then does an if chain
+                if (tempCharFromFile == delimiter || tempCharFromFile == '\n') {
+                    delimiterCtr++;
+                } else {
+                    //excludes the delimiter from being included
+                    textReadFromFileSoFar.push_back(tempCharFromFile);
+                }
 
+                if (delimiterCtr == 1) {
+                    tempEventNumber = stoi(textReadFromFileSoFar);
+                    //cout << "Here is my event number: " << tempEventNumber << endl;
+                    textReadFromFileSoFar = "";
+                    delimiterCtr++;
+                } else if (delimiterCtr == 3) {
+                    tempDescription = textReadFromFileSoFar;
+                    //cout << "Here is my description: " << tempDescription << endl;
+                    textReadFromFileSoFar = "";
+                    delimiterCtr++;
+                } else if (delimiterCtr == 5) {
+                    tempLeftEventNumber = stoi(textReadFromFileSoFar);
+                    //cout << "Here is my left event number: " << tempLeftEventNumber << endl;
+                    textReadFromFileSoFar = "";
+                    delimiterCtr++;
+                } else if (delimiterCtr == 7) {
+                    tempRightEventNumber = stoi(textReadFromFileSoFar);
+                    //cout << "Here is my right event number: " << tempRightEventNumber << endl;
+                    textReadFromFileSoFar = "";
+                    delimiterCtr++;
+                }
 
-                cout << lineFromFile << endl; //current issue is that another delimiter is missing...somehow need to figure out how to recgonize a new line?
-                if (ctr==0) {
-                    tempEventNumber = stoi(lineFromFile);
-                    ctr++;
-                    cout << "The event number is: " << tempEventNumber << endl;
-                    cout<< " " << endl;
+                if (tempCharFromFile == '\n') {
+                    delimiterCtr = 0;
+                    Story tempStory(tempDescription, tempEventNumber, tempLeftEventNumber, tempRightEventNumber);
+                    Node<T> *tempNode = new Node<T>(tempStory, nullptr, nullptr);
+                    binaryTree.push_back(tempNode); //doing this because to keep track of ALL nodes being created.
                 }
-                else if (ctr==1) {
-                    tempDescription = lineFromFile;
-                    ctr++;
-                    cout << "The description is: " << tempDescription << endl;
-                    cout<< " " << endl;
-                }
-                else if (ctr==2) {
-                    tempLeftEventNumber = stoi(lineFromFile);
-                    ctr++;
-                    cout << "The left event number is: " << tempLeftEventNumber << endl;
-                    cout<< " " << endl;
-                }
-                else if (ctr==3) {
-                    tempRightEventNumber = stoi(lineFromFile);
-                    ctr++;
-                    cout << "The right event number is: " << tempRightEventNumber << endl;
-                    //maybe implement a helper method somewhere to check when stuff is missing from the txt file.
-                    cout<< " " << endl;
-                    cout<< "The line is currently :" << lineFromFile << endl;
-                }
-                else {
-                    ctr=0;
-                }
+            }
+        } else {
+            cout << "File could not be found" << endl;
         }
-    } else {
-        cout << "File could not be found" << endl;
-    }
-    readingFile.close();
+        readingFile.close();
+
+        Node<T> *temp;
+        for (int i=0; i<binaryTree.size(); i++) {
+            temp=binaryTree[i];
+            tempLeftEventNumber = temp->data.leftEventNumber;
+            tempRightEventNumber = temp->data.rightEventNumber;
+            if (i==0) {
+                root= temp;
+            }
+            if (tempLeftEventNumber!= -1 && tempLeftEventNumber-1>=0 && tempLeftEventNumber-1<binaryTree.size()) {
+                temp->left = binaryTree[tempLeftEventNumber - 1];
+            }
+            if (tempRightEventNumber!= -1 && tempRightEventNumber-1>=0 && tempRightEventNumber-1<binaryTree.size()) {
+                temp->right = binaryTree[tempRightEventNumber - 1];
+            }
+        }
     }
 
     // TODO: Function to start the game and traverse the tree based on user input
-    void playGame(){}
+    void playGame() {
+        Node<T> *temp = root;
+        int tempInput;
+        while (temp != nullptr) {
+            cout << temp->data.description;
+            if (temp->left != nullptr && temp->right == nullptr) { //If there is a left node but no right node
+                tempInput=1;
+                cout << endl;
+            }
+            else if (temp->left == nullptr && temp->right != nullptr ) { //If there is a right node but no left node
+                tempInput=2;
+                cout << endl;
+            }
+            else if (temp->left == nullptr && temp->right == nullptr) {
+                cout << "You have reached the end of the path. " << endl;
+                break;
+            } else {
+                cout << "Do you: " << endl;
+                cout << "1." << temp->left->data.description << "(Go left)" << endl;
+                cout << "2." << temp->right->data.description << "(Go right)" << endl;
+                cout << "Enter choice (1 for left, 2 for right): ";
+                cin >> tempInput;
+                cout << tempInput << "\n" << endl;
+            }
+
+            if (tempInput == 1) {
+                temp = temp->left;
+            }
+            if (tempInput == 2) {
+                temp = temp->right;
+            }
+        }
+    }
 };
 
 #endif // GAMEDECISIONTREE_H
