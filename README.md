@@ -80,7 +80,7 @@ Swoop up the kitty and take it home. Do you:
 (Analyze the complexity of key methods.)
 
 - **Loading the tree from the file** → `O(n) assuming that n is the number of char in the text file and loading requires the visitation of every char in the txt file`  
-- **Searching for an event in the tree** → `O(logn) because the game traverses going left or right per maneuver`  
+- **Searching for an event in the tree** → `O(logn) because the tree traverses going left or right per maneuver to search`  
 - **Game traversal efficiency** → `O(logn) because the game traverses going left or right per maneuver`  
 
 ---
