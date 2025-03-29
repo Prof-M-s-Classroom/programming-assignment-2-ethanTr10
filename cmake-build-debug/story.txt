@@ -1,20 +1,20 @@
 1 | You see a collar-less cat lurking while on a walk around the neighborhood late at night. | 2 | 3
-2 | Swoop up the kitty and take it home. | 4 | 5
-3 | Leave it and go home. You go on a walk with different path and cat comes running up to you and starts rubbing against you showing affection. | 6 | 7
-4 | Feed the kitty some left-over chicken. | 8 | 9
+2 | Swoop up the cat and take it home. | 4 | 5
+3 | Leave it and go home. You go on a walk with a different path the next day and the same cat comes running up to you and starts rubbing against you showing affection. | 6 | 7
+4 | Feed the cat some left-over chicken. | 8 | 9
 5 | Bother your cat-lover friend at 11pm to drop off some food. They mention how they could take care of the cat if you do not prefer to. | 9 | 10
-6 | You start to love this cat so you start brining it food on a daily basis. | 11 | 12
-7 | Get freaked out by the cat's demeanor so you avoid the cat by completely changing walking path so you never end up seeing the cat ever again. | -1 | -1
+6 | You start to love this cat so you start bringing it food on a daily basis. | 11 | 12
+7 | Get freaked out by the cat's demeanor so you avoid the cat by completely changing the walking path so you never end up seeing the cat ever again. | -1 | -1
 8 | Release the cat back outside because you do not want any fleas in home, but the cat starts crying immediately. | 13 | 14
-9 | You try your best to keep the cat warm, give it lots of water and decide to keep the kitty until at least tomorrow. The cat starts to purr a ton and ends up climbing into bed to snuggle. | 15 | 16
+9 | You try your best to keep the cat warm, give it lots of water and decide to keep the cat until at least tomorrow. The cat starts to purr a ton and ends up climbing into bed to snuggle. | 15 | 16
 10 | Gift the cat to your friend because you know the cat will be in good hands for the rest of its life. | -1 | -1
 11 | Build a cat shed to deem it as an outdoor neighborhood cat who gets fed daily. | -1 | -1
-12 | Take the cat home, build am expansive cat patio so the cat is completely safe from wildlife, people, cars, and people, but still allow the cat to explore on its own as your own kitty. | -1 | -1
-13 | Let kitty sleep with you and take the cat to shelter in the morning where you discover the cat belongs to someone else. | 17 | 18
-14 | Put cat in garage for temporary shelter and post on community page asking if anyone wants or recognizes the cat. | 19 | 20
+12 | Take the cat home, build an expansive cat patio so the cat is completely safe from wildlife, people and cars, but still allow the cat to explore on its own as your own cat. | -1 | -1
+13 | Let the cat sleep with you and take the cat to shelter in the morning where you discover the cat belongs to someone else. | 17 | 18
+14 | Put the cat in your garage for temporary shelter and then post on community page asking if anyone wants or recognizes the cat. No one recognizes the cat, but someone wants to keep it. | 19 | 20
 15 | Drop off the cat at a shelter because you do not think you can properly care for the cat. | -1 | -1
 16 | Take it as a sign to live together forever. | -1 | -1
 17 | Steal the cat to be yours forever. | -1 | -1
 18 | Say goodbye to the cat forever even though you really wanted it. | -1 | -1
-19 | Realize you want to keep the cat as an indoor cat and ignore all the responses from the community page who wanted the cat. | -1 | -1
+19 | Keep the cat for yourself as an indoor cat and ignore all the responses from the community page who wanted the cat. | -1 | -1
 20 | Let the cat go home with your neighbor as the new owner with the promise that you still get to visit the cat whenever you want. | -1 | -1

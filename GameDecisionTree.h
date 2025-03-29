@@ -41,20 +41,20 @@ public:
         fstream readingFile;
         readingFile.open(filename);
 
-        if (readingFile) { //true is an actual file that is openable
+        if (readingFile) { //true is an actual file that is able to be opened
             while (readingFile >> noskipws >> tempCharFromFile) { //This reads every character within the text file
 
                 if (tempCharFromFile == delimiter || tempCharFromFile == '\n') {
                     delimiterCtr++;
-                } else {//excludes the delimiter from being included in the content read so far
+                } else { //excludes the delimiter from being included in the content read so far
                     textReadFromFileSoFar.push_back(tempCharFromFile);
                 }
 
                 if (delimiterCtr == 1) {
                     tempEventNumber = stoi(textReadFromFileSoFar); //use stoi to convert the string to an int
                     textReadFromFileSoFar = "";
-                    delimiterCtr++; //increment delimiterCtr to prevent unwanted assignments of wrong information until
-                    //another delimiter is found
+                    delimiterCtr++; //increment delimiterCtr to prevent unwanted repeat assignments of wrong information
+                    //until another delimiter is found which would increment delimiterCtr again
                 } else if (delimiterCtr == 3) {
                     tempDescription = textReadFromFileSoFar;
                     textReadFromFileSoFar = "";
@@ -70,15 +70,15 @@ public:
                 }
 
                 if (tempCharFromFile == '\n') { //the end of line means the conclusion of an event, so must reset
-                    //delimiter ctr, create a story, create a node with a story, and add the node to a vector of binary
-                    //trees
+                    //delimiter ctr, create a story, create a node with a story, and add the node to a vector of
+                    //binaryTree
                     delimiterCtr = 0;
                     Story tempStory(tempDescription, tempEventNumber, tempLeftEventNumber, tempRightEventNumber);
                     Node<T> *tempNode = new Node<T>(tempStory, nullptr, nullptr);
                     binaryTree.push_back(tempNode); //doing this because to keep track of ALL nodes being created.
                 }
             }
-        } else { //edge case
+        } else { //edge case of file not being found
             cout << "File could not be found" << endl;
         }
         readingFile.close();
@@ -108,10 +108,10 @@ public:
         while (temp != nullptr) { //runs until a leaf node is reached
             cout << temp->data.description;
             if (temp->left != nullptr && temp->right == nullptr) { //If there is a left node but no right node
-                tempInput = 1;
+                tempInput = 1; //skips the user input because there would only be one path to take
                 cout << endl;
             } else if (temp->left == nullptr && temp->right != nullptr) { //If there is a right node but no left node
-                tempInput = 2;
+                tempInput = 2; //skips the user input because there would only be one path to take
                 cout << endl;
             } else if (temp->left == nullptr && temp->right == nullptr) { //leaf node
                 cout << "You have reached the end of the path. \n" << endl;
@@ -123,7 +123,7 @@ public:
                 }
                 else {
                     cout<<"Thanks for playing!"<<endl;
-                    break; //indicates the end of the game since no more traversal of the tree
+                    break; //indicates the end of the game since no more while-loop traversal of the tree
                 }
 
             } else { //when there are multiple node options

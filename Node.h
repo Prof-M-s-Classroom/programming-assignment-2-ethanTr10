@@ -9,7 +9,7 @@ public:
     Node* right;
 
  Node(T value, Node* tempLeft, Node* tempRight) : data(value), left(nullptr), right(nullptr) { } //Non-default constructor
-    //which takes in a generic T value and left and right Node pointers and assigns the instance variables with them
+    //which takes in a generic T value to assign for data while also leaving the Node* left and right as nullptr
  };
 
 #endif // NODE_H
