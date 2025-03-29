@@ -126,7 +126,7 @@ public:
                     break; //indicates the end of the game since no more traversal of the tree
                 }
 
-            } else {
+            } else { //when there are multiple node options
                 cout << "Do you: " << endl;
                 cout << "1." << temp->left->data.description << "(Go left)" << endl;
                 cout << "2." << temp->right->data.description << "(Go right)" << endl;
