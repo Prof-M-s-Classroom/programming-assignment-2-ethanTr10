@@ -105,25 +105,25 @@ public:
     //traversed going left or right per decision.
     void playGame() {
         Node<T> *temp = root;
-        int tempInput; //used to store user input
+        string tempInput; //used to store user input
         while (temp != nullptr) { //runs until a leaf node is reached
             cout << temp->data.description;
             if (temp->left != nullptr && temp->right == nullptr) { //If there is a left node but no right node
-                tempInput = 1; //skips the user input because there would only be one path to take
+                tempInput = "1"; //skips the user input because there would only be one path to take
                 cout << endl;
             } else if (temp->left == nullptr && temp->right != nullptr) { //If there is a right node but no left node
-                tempInput = 2; //skips the user input because there would only be one path to take
+                tempInput = "2"; //skips the user input because there would only be one path to take
                 cout << endl;
             } else if (temp->left == nullptr && temp->right == nullptr) { //leaf node
                 cout << "You have reached the end of the path. \n" << endl;
                 cout << "Do you want to play again? ('1' for yes, '2' for no) \n" << endl;
-                cin >> tempInput;
-                if (tempInput != 1 && tempInput != 2) {
+                getline(cin, tempInput);
+                if (tempInput != "1" && tempInput != "2") {
                     cout<< "Invalid input. Please choose 1 or 2 : \n"<< endl;
-                } else if (tempInput == 1) { //if player wants to play again, reset temp to be the root and tempInput back to 0
+                } else if (tempInput == "1") { //if player wants to play again, reset temp to be the root and tempInput back to 0
                     temp=root;
-                    tempInput=0;
-                } else if (tempInput == 2) {
+                    tempInput="";
+                } else if (tempInput == "2") {
                     cout << "Thanks for playing!" << endl;
                     break; //indicates the end of the game since no more while-loop traversal of the tree
                 }
@@ -132,16 +132,16 @@ public:
                 cout << "1." << temp->left->data.description << "(Go left)" << endl;
                 cout << "2." << temp->right->data.description << "(Go right)" << endl;
                 cout << "Enter choice (1 for left, 2 for right): ";
-                cin >> tempInput;
+                getline(cin, tempInput);
                 cout << "You chose: " << tempInput << "\n" << endl;
-                if (tempInput != 1 && tempInput != 2) {
+                if (tempInput != "1" && tempInput != "2") {
                     cout<< "Invalid input. Please choose 1 or 2 : \n"<< endl;
                 }
             }
-            if (tempInput == 1) { //traverses left
+            if (tempInput == "1") { //traverses left
                 temp = temp->left;
             }
-            else if (tempInput == 2) { //traverses right
+            else if (tempInput == "2") { //traverses right
                 temp = temp->right;
             }
         }
