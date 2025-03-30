@@ -73,7 +73,7 @@ public:
                     //delimiter ctr, create a story, create a node with a story, and add the node to a vector of
                     //binaryTree
                     delimiterCtr = 0;
-                    Story tempStory(tempDescription, tempEventNumber, tempLeftEventNumber, tempRightEventNumber);
+                    T tempStory(tempDescription, tempEventNumber, tempLeftEventNumber, tempRightEventNumber);
                     Node<T> *tempNode = new Node<T>(tempStory, nullptr, nullptr);
                     binaryTree.push_back(tempNode); //doing this because to keep track of ALL nodes being created.
                 }
@@ -117,15 +117,13 @@ public:
                 cout << "You have reached the end of the path. \n" << endl;
                 cout << "Do you want to play again? ('1' for yes, '2' for no) \n" << endl;
                 cin >> tempInput;
-                if (tempInput==1) { //if player wants to play again, reset temp to be the root and tempInput back to 0
-                    temp=root;
-                    tempInput=0;
-                }
-                else {
-                    cout<<"Thanks for playing!"<<endl;
+                if (tempInput == 1) { //if player wants to play again, reset temp to be the root and tempInput back to 0
+                    temp = root;
+                    tempInput = 0;
+                } else if (tempInput == 2) {
+                    cout << "Thanks for playing!" << endl;
                     break; //indicates the end of the game since no more while-loop traversal of the tree
                 }
-
             } else { //when there are multiple node options
                 cout << "Do you: " << endl;
                 cout << "1." << temp->left->data.description << "(Go left)" << endl;
@@ -134,7 +132,9 @@ public:
                 cin >> tempInput;
                 cout << "You chose: " << tempInput << "\n" << endl;
             }
-
+            if (tempInput != 1 && tempInput != 2) {
+                cout<< "Invalid input. Please choose 1 or 2 : \n"<< endl;
+            }
             if (tempInput == 1) { //traverses left
                 temp = temp->left;
             }

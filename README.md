@@ -63,13 +63,13 @@
 (Provide an example of how the game runs, including player input.)
 
 You see a collar-less cat lurking while on a walk around the neighborhood late at night. Do you:
-1. Swoop up the kitty and take it home. (Go left)
+1. Swoop up the cat and take it home. (Go left)
 2. Leave it and go home. You go on a walk with different path and cat comes running up to you and starts rubbing against you showing affection. (Go right)
    Enter choice (1 for left, 2 for right): 1
    You chose: 1
 
-Swoop up the kitty and take it home. Do you:
-1. Feed the kitty some left-over chicken. (Go left)
+Swoop up the cat and take it home. Do you:
+1. Feed the cat some left-over chicken. (Go left)
 2. Bother your cat-lover friend at 11pm to drop off some food. They mention how they could take care of the cat if you do not prefer to. (Go right)
    Enter choice (1 for left, 2 for right): 2
    You chose: 2
