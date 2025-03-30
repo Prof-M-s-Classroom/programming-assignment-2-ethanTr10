@@ -117,7 +117,7 @@ public:
             } else if (temp->left == nullptr && temp->right == nullptr) { //leaf node
                 cout << "You have reached the end of the path. \n" << endl;
                 cout << "Do you want to play again? ('1' for yes, '2' for no) \n" << endl;
-                getline(cin, tempInput);
+                getline(cin, tempInput); //assign tempInput with the entire line of string from cin
                 if (tempInput != "1" && tempInput != "2") {
                     cout<< "Invalid input. Please choose 1 or 2 : \n"<< endl;
                 } else if (tempInput == "1") { //if player wants to play again, reset temp to be the root and tempInput back to 0

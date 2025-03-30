@@ -37,7 +37,7 @@
 ## **4. Game Traversal**
 (Describe how the game moves through the decision tree.)
 
-- How does user input determine the path taken? A while loop is used to check if the current node being visited (referenced as temp Node pointer) is not a nullptr. If it is not a nullptr, I prompt the user to enter a 1 or 2 to go left or right. I used the getline() function which assigns the cin input to int tempInput. If tempInput is 1, then the Node pointer temp gets assigned to the left of temp. If tempInput is 2, then the Node pointer temp gets assigned to the right of temp. The while loop then executes again printing out temp's new description and then asks for input again on which path to take if temp is not a leaf node.
+- How does user input determine the path taken? A while loop is used to check if the current node being visited (referenced as temp Node pointer) is not a nullptr. If it is not a nullptr, I prompt the user to enter a 1 or 2 to go left or right. I used the getline() function which assigns the cin input to string tempInput. If tempInput is 1, then the Node pointer temp gets assigned to the left of temp. If tempInput is 2, then the Node pointer temp gets assigned to the right of temp. The while loop then executes again printing out temp's new description and then asks for input again on which path to take if temp is not a leaf node.
 - What happens when the player reaches a leaf node?  There is an if statement when the temporary node pointer's left and right pointers are both nullptr. When that statement is reached for a leaf node, then the game is over and breaks out of the while loop if the player does not want to play again.
 - Explain the special case where multiple events lead to the same outcome. The special case is event 9 "You try your best to keep the cat warm, give it lots of water and decide to keep the kitty until at least tomorrow. The cat starts to purr a ton and ends up climbing into bed to snuggle." since the right child of event 4 points to 9 and the left child of event 5 points to 9. 
 
@@ -95,7 +95,7 @@ Swoop up the cat and take it home. Do you:
 ## **10. Justification of Additional Features (If Any)**
 (If you added extra features, describe them and explain why.)
 
-- I added a feature where it provides players the option to play the game again once they reach a leaf node. If a leaf node is reached, then I make use of cin which assigns tempInput a value of 1 or 2. If the player inputs 1, they want to play again so I assign temp to be root again and tempInput to be 0. If player inputs 2, they do not want to play again so it break out of the while loop, indicating the complete end of game. I got inspired to do this since I did not want to have to press the play button everytime I wanted to test different paths. 
+- I added a feature where it provides players the option to play the game again once they reach a leaf node. If a leaf node is reached, then I make use of getline(cin, tempInput) which assigns tempInput a value of 1 or 2. If the player inputs 1, they want to play again so I assign temp to be root again and tempInput to be 0. If player inputs 2, they do not want to play again so it break out of the while loop, indicating the complete end of game. I got inspired to do this since I did not want to have to press the play button everytime I wanted to test different paths. 
 
 ---
 
