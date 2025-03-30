@@ -16,13 +16,13 @@ private:
     Node<T> *root;
 
 public:
-    //Default constructor where the root starts off as nullptr to indicate an empty binary tree without any nodes
+    //Default constructor where the root starts off as nullptr to indicate an empty binary tree without any nodes O(1)
     GameDecisionTree() : root(nullptr) {
     }
 
     //Takes in the filename and custom delimiter from main.cpp to read each char of the txt file, obtain all parts of a
     //story (eventNumber, description, leftEventNumber, and rightEventNumber) to construct a story, create a node using
-    //a story, and then linking the correct left and right node pointers
+    //a story, and then linking the correct left and right node pointers. O(n) since it reads char by char.
     void loadStoryFromFile(const std::string &filename, char delimiter) {
         //variables needed to create stories and nodes
         char tempCharFromFile;
@@ -101,7 +101,8 @@ public:
     }
 
     //Traverses the binary tree outputting the current, left and right nodes. Provides user with the opportunity to go
-    //left or right and to play again. Also notifies when the end of a path has been reached.
+    //left or right and to play again. Also notifies when the end of a path has been reached. O(logn) since tree is
+    //traversed going left or right per decision.
     void playGame() {
         Node<T> *temp = root;
         int tempInput; //used to store user input
@@ -117,9 +118,11 @@ public:
                 cout << "You have reached the end of the path. \n" << endl;
                 cout << "Do you want to play again? ('1' for yes, '2' for no) \n" << endl;
                 cin >> tempInput;
-                if (tempInput == 1) { //if player wants to play again, reset temp to be the root and tempInput back to 0
-                    temp = root;
-                    tempInput = 0;
+                if (tempInput != 1 && tempInput != 2) {
+                    cout<< "Invalid input. Please choose 1 or 2 : \n"<< endl;
+                } else if (tempInput == 1) { //if player wants to play again, reset temp to be the root and tempInput back to 0
+                    temp=root;
+                    tempInput=0;
                 } else if (tempInput == 2) {
                     cout << "Thanks for playing!" << endl;
                     break; //indicates the end of the game since no more while-loop traversal of the tree
@@ -131,14 +134,14 @@ public:
                 cout << "Enter choice (1 for left, 2 for right): ";
                 cin >> tempInput;
                 cout << "You chose: " << tempInput << "\n" << endl;
-            }
-            if (tempInput != 1 && tempInput != 2) {
-                cout<< "Invalid input. Please choose 1 or 2 : \n"<< endl;
+                if (tempInput != 1 && tempInput != 2) {
+                    cout<< "Invalid input. Please choose 1 or 2 : \n"<< endl;
+                }
             }
             if (tempInput == 1) { //traverses left
                 temp = temp->left;
             }
-            if (tempInput == 2) { //traverses right
+            else if (tempInput == 2) { //traverses right
                 temp = temp->right;
             }
         }
